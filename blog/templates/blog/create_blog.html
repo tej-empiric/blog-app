@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Create Blog{% endblock %}
+
+{% block header %} 
+<p>{{user.username }}!</p>
+{% endblock %}
+
+{% block navigation %}
+<a href="{% url 'home' %}">Blogs</a>
+<a href="{% url 'password_change' %}">Password Change</a>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'create_blog' %}" method="post">
+    {% csrf_token %}
+    {% comment %} {{form}} {% endcomment %}
+    <button type="submit">Save</button>
+{% endblock %}
