@@ -5,7 +5,7 @@
 {% block header %} 
 <p>{{user.username }}!</p>
 {% endblock %}
-
+      
 {% block navigation %}
 <a href="{% url 'home' %}">Blogs</a>
 <a href="{% url 'password_change' %}">Password Change</a>
@@ -16,8 +16,13 @@
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'create_blog' %}" method="post">
+<h3>Create Blog</h3>
+<form action="" method="POST">
     {% csrf_token %}
-    {% comment %} {{form}} {% endcomment %}
+    {% for field in form %}
+        {{field.label_tag}}
+        {{field}} <br><br>
+    {% endfor %}
     <button type="submit">Save</button>
+</form>
 {% endblock %}
