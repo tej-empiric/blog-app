@@ -39,7 +39,7 @@ def blog(request, id):
     try:
         blog = Blog.objects.get(pk=id)
     except Exception as e:
-        print("Error displaying blog")
+        print(f"Error displaying blog {str(e)}")
 
     return render(request, "blog/blog.html", {"blog": blog})
 
@@ -51,7 +51,6 @@ def edit(request, id):
         form = BlogForm(request.POST, instance=blog)
         if form.is_valid():
             form.save()
-            messages.success(request, "Blog updated successfully")
             return render(request, "blog/blog.html", {"blog": blog})
         else:
             form = BlogForm(instance=blog)

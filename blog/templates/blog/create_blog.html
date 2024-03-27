@@ -3,26 +3,36 @@
 {% block title %}Create Blog{% endblock %}
 
 {% block header %} 
-<p>{{user.username }}!</p>
+<p class="title">{{user.username }}!</p>
 {% endblock %}
       
 {% block navigation %}
-<a href="{% url 'home' %}">Blogs</a>
-<a href="{% url 'password_change' %}">Password Change</a>
-<form action="{% url 'logout' %}" method="post">
+<li><a href="{% url 'home' %}">Blogs</a></li>
+<li><a href="{% url 'password_change' %}">Password Change</a></li>
+<li class="right"><form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
-    <button type="submit">Log Out</button>
-</form>
+    <button type="submit" class="button">Log Out</button>
+</form></li>
 {% endblock %}
 
 {% block content %}
+<div class="create-blog">
 <h3>Create Blog</h3>
 <form action="" method="POST">
     {% csrf_token %}
+    <div class="row">
     {% for field in form %}
+    <div class="col-25">
         {{field.label_tag}}
+    </div>
+    <div class="col-75">
         {{field}} <br><br>
+    </div>
     {% endfor %}
-    <button type="submit">Save</button>
+    </div>
+    <div class="row">
+    <button type="submit" class="button button-container">Save</button>
+    </div>
 </form>
+</div>
 {% endblock %}

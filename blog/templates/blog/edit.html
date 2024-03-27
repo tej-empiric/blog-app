@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,17 +7,25 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'blog/css/edit.css' %}">
     </head>
     <body>
         <h3>Edit Blog</h3>
         <form action="" method="POST">
             {% csrf_token %}
+            <div class="row">
             {% for field in form %}
+            <div class="col-25">
                 {{field.label_tag}}
+            </div>
+            <div class="col-75">
                 {{field}} <br><br>
+            </div>
             {% endfor %}
-            <button type="submit">Update</button>
+            </div>
+            <div class="row">
+            <button type="submit" class="button button-container">Update</button>
+            </div>
         </form>
         <script src="" async defer></script>
     </body>

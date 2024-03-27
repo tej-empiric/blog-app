@@ -8,19 +8,19 @@
 
 {% block header %} 
 {% if user.is_authenticated %} 
-<p>Hi {{user.username }}!</p>
+<p class="title">Hi {{user.username }}!</p>
 {% endif %}
 {% endblock %}
 
 
 {% block navigation %}
 {% if user.is_authenticated %}
-<a href="{% url 'create_blog' %}">Create Blog</a>
-<a href="{% url 'password_change' %}">Password Change</a>
-<form action="{% url 'logout' %}" method="post">
+<li><a href="{% url 'create_blog' %}">Create Blog</a></li>
+    <li><a href="{% url 'password_change' %}">Password Change</a></li>
+        <li class="right"><form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
-    <button type="submit">Log Out</button>
-</form>
+    <button type="submit" class="button">Log Out</button>
+</form></li>
 {% endif %}
 {% endblock %}
 
@@ -29,18 +29,19 @@
 {% if user.is_authenticated %} 
 <div class="container">
     <div class="row">
-        <div class="col-25" id="blogList">
+        <div class="col-15" id="blogList">
+            <ul class="blog-list">
             {% with blogs=user.blog_set.all %}   
             {% if blogs %}
             {% for blog in blogs %}
-            <a href="{% url 'blog' blog.id %}" target="blog_fram">{{blog.title}}</a>
-            
+            <li><a href="{% url 'blog' blog.id %}" target="blog_fram">{{blog.title}}</a></li>
             {% endfor %}
             {% endif %}
             {% endwith %}
+            </ul>
         </div>
-        <div class="col-75" id="blogContent">
-            <iframe src="{% url 'iframe' %}" name="blog_fram" title="blog fram" height="300px" width="300px"></iframe>
+        <div class="col-85" id="blogContent">
+            <iframe src="{% url 'iframe' %}" name="blog_fram" title="blog fram" height="650px" width="100%"></iframe>
             
         </div>
     </div>

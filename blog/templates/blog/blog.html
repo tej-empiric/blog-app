@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,24 +7,24 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
     </head>
     <body>
         {% if blog %}
-        <p>{{blog.title}}</p>
-        <p>{{blog.content}}</p>
+        <p class="title">{{blog.title}}</p>
+        <p class="content">{{blog.content|linebreaksbr}}</p>
         
         
             <span class="b1">
                 <form action="{% url "edit" blog.id %}" method="POST">
                     {% csrf_token %}
-                    <input type="submit" name="edit" value="Edit" class="b1" />
+                    <input type="submit" name="edit" value="Edit" class="b1 button" />
                 </form>
             </span>
             <span class="b1">
                 <form action="{% url "delete" blog.id %}" method="POST">
                     {% csrf_token %}
-                    <input type="submit" name="delete" value="Delete" class="b1" />
+                    <input type="submit" name="delete" value="Delete" class="b1 button" />
                 </form> 
             </span>
         
